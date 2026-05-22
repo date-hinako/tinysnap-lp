@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会社概要 | Tiny Snap</title>
+  <meta name="description" content="ダテ薬局DXについて。運営会社情報、プライバシーポリシー、お問い合わせはこちらから。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* =========================================================
+       Company page — page-specific styles
+       ========================================================= */
+
+    /* Page wrapper */
+    .company-page {
+      padding-top: 80px;
+    }
+
+    /* ── Section common ── */
+    .company-section {
+      padding: 60px 124px;
+    }
+
+    .company-section__heading {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--color-gray-900);
+      margin: 0 0 32px;
+    }
+
+    /* ── About section ── */
+    .company-about {
+      padding: 48px 124px 60px;
+    }
+
+    .company-about__inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+    }
+
+    .company-about__text {
+      flex: 0 0 620px;
+      max-width: 620px;
+    }
+
+    .company-about__heading {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--color-gray-900);
+      margin: 0 0 24px;
+    }
+
+    .company-about__desc {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.8;
+      color: var(--color-gray-700, #334155);
+      margin: 0 0 16px;
+    }
+
+    .company-about__desc:last-child {
+      margin-bottom: 0;
+    }
+
+    .company-about__media {
+      flex: 1;
+      position: relative;
+    }
+
+    .company-about__img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+    }
+
+    /* ── Features list ── */
+    .company-features {
+      padding: 0 124px 60px;
+    }
+
+    .company-features__list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .company-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .company-feature-item__dot {
+      flex-shrink: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--color-brand-500);
+      margin-top: 8px;
+    }
+
+    .company-feature-item__content {
+      flex: 1;
+    }
+
+    .company-feature-item__title {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--color-gray-900);
+      margin: 0 0 8px;
+    }
+
+    .company-feature-item__desc {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--color-gray-600, #475569);
+      margin: 0;
+    }
+
+    /* ── Footer note ── */
+    .company-note {
+      padding: 0 124px 60px;
+    }
+
+    .company-note__text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--color-gray-600, #475569);
+      margin: 0;
+    }
+
+    .company-note__text a {
+      color: var(--color-brand-500);
+      text-decoration: underline;
+    }
+
+    /* ── 運営会社 section ── */
+    .company-operator {
+      background: #F8FAFC;
+      padding: 60px 124px;
+    }
+
+    .company-operator__card {
+      background: var(--color-white);
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 40px;
+    }
+
+    .company-operator__card-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .company-operator__icon {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-brand-50, #E6F6F2);
+      border-radius: 12px;
+      padding: 10px;
+    }
+
+    .company-operator__icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--color-brand-500);
+    }
+
+    .company-operator__info {
+      flex: 1;
+    }
+
+    .company-operator__name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-gray-900);
+      margin: 0 0 16px;
+      line-height: 1.4;
+    }
+
+    .company-operator__detail {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-gray-500, #64748B);
+      margin: 0 0 8px;
+      line-height: 1.5;
+    }
+
+    .company-operator__detail:last-child {
+      margin-bottom: 0;
+    }
+
+    .company-operator__url {
+      color: var(--color-brand-500);
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    /* ── プライバシーポリシー ── */
+    .company-privacy {
+      padding: 60px 124px;
+    }
+
+    .company-privacy__desc {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--color-gray-700, #334155);
+      margin: 0 0 24px;
+    }
+
+    .company-privacy__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-brand-500);
+      text-decoration: underline;
+      transition: opacity 0.2s;
+    }
+
+    .company-privacy__link:hover {
+      opacity: 0.75;
+    }
+
+    /* ── お問い合わせ ── */
+    .company-contact {
+      padding: 60px 124px 100px;
+    }
+
+    .company-contact__desc {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--color-gray-700, #334155);
+      margin: 0 0 32px;
+    }
+
+    .company-contact__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      width: 350px;
+      max-width: 100%;
+      padding: 16px 24px;
+      background: var(--color-brand-500);
+      color: var(--color-white);
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      justify-content: center;
+    }
+
+    .company-contact__cta:hover {
+      background: var(--color-brand-600, #008C6D);
+      transform: translateY(-1px);
+    }
+
+    .company-contact__cta-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+    }
+
+
+    /* =========================================================
+       SP overrides (max-width: 768px)
+       ========================================================= */
+    @media (max-width: 768px) {
+
+      .company-page {
+        padding-top: 40px;
+      }
+
+      .company-about {
+        padding: 48px 20px 40px;
+      }
+
+      .company-about__inner {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .company-about__text {
+        flex: none;
+        max-width: 100%;
+      }
+
+      .company-about__heading {
+        font-size: 24px;
+        margin-bottom: 16px;
+      }
+
+      .company-about__img {
+        height: 220px;
+      }
+
+      .company-features {
+        padding: 0 20px 40px;
+      }
+
+      .company-feature-item__title {
+        font-size: 17px;
+      }
+
+      .company-note {
+        padding: 0 20px 40px;
+      }
+
+      .company-operator {
+        padding: 40px 20px;
+      }
+
+      .company-section__heading,
+      .company-operator .company-section__heading {
+        font-size: 24px;
+      }
+
+      .company-operator__card {
+        padding: 24px 20px;
+      }
+
+      .company-operator__card-inner {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .company-operator__table th {
+        width: 100px;
+        font-size: 14px;
+      }
+
+      .company-operator__table td {
+        font-size: 14px;
+      }
+
+      .company-privacy {
+        padding: 40px 20px;
+      }
+
+      .company-contact {
+        padding: 40px 20px 60px;
+      }
+
+      .company-contact__cta {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__logo" aria-label="Tiny Snap ホーム">Tiny Snap</a>
+
+      <nav class="site-header__nav" aria-label="グローバルナビゲーション">
+        <ul class="site-header__nav-list">
+          <li class="site-header__nav-item">
+            <a href="index.html">TOP</a>
+          </li>
+          <li class="site-header__nav-item is-current">
+            <a href="company.html">会社概要</a>
+          </li>
+        </ul>
+
+        <div class="site-header__actions">
+          <a href="register.html" class="site-header__cta">お申込み</a>
+          <a href="#login" class="site-header__login">ログイン</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="company-page">
+
+    <!-- ダテ薬局DXについて -->
+    <section class="company-about">
+      <div class="company-about__inner">
+        <div class="company-about__text">
+          <h1 class="company-about__heading">ダテ薬局DXについて</h1>
+          <p class="company-about__desc">
+            ダテ薬局DXは、薬局・医療機関のDX推進を専門に支援するサービスです。現場スタッフが日々抱える「調べる・探す・伝える」といった業務コストをAIと自動化技術で大幅に削減し、本来の患者対応に集中できる環境を実現します。
+          </p>
+          <p class="company-about__desc">
+            LINE WORKSをはじめとするコミュニケーションツールとシームレスに連携することで、新しいシステムの学習コストをゼロに近づけながら、現場のデジタル化を段階的・確実に進めることができます。
+          </p>
+          <p class="company-about__desc">
+            私たちは単なるツール提供にとどまらず、導入後の継続的なサポートと改善提案を通じて、薬局経営の持続的な成長をパートナーとして支えてまいります。
+          </p>
+        </div>
+
+        <div class="company-about__media">
+          <img
+            class="company-about__img"
+            src="https://www.figma.com/api/mcp/asset/3aeddde6-26de-4c11-a41b-46a1d35fc771"
+            alt="薬局スタッフがタブレットを操作している様子"
+            loading="lazy"
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- 特徴リスト -->
+    <section class="company-features">
+      <ul class="company-features__list">
+        <li class="company-feature-item">
+          <span class="company-feature-item__dot" aria-hidden="true"></span>
+          <div class="company-feature-item__content">
+            <h2 class="company-feature-item__title">業務フローの自動化・効率化</h2>
+            <p class="company-feature-item__desc">
+              煩雑な入力作業や情報検索をAIが代替し、スタッフが患者対応に専念できる環境を構築。残業削減・生産性向上を同時に実現します。
+            </p>
+          </div>
+        </li>
+        <li class="company-feature-item">
+          <span class="company-feature-item__dot" aria-hidden="true"></span>
+          <div class="company-feature-item__content">
+            <h2 class="company-feature-item__title">データ連携による情報管理</h2>
+            <p class="company-feature-item__desc">
+              既存の電子薬歴・レセコンと連携し、必要な情報を一元管理。複数システムへのログインや転記ミスをなくし、安全な情報フローを実現します。
+            </p>
+          </div>
+        </li>
+        <li class="company-feature-item">
+          <span class="company-feature-item__dot" aria-hidden="true"></span>
+          <div class="company-feature-item__content">
+            <h2 class="company-feature-item__title">現場に寄り添ったカスタマイズ性</h2>
+            <p class="company-feature-item__desc">
+              薬局の規模・診療科・業務フローに合わせた柔軟な設定が可能。小規模薬局から複数店舗の運営まで、最適な形でご利用いただけます。
+            </p>
+          </div>
+        </li>
+        <li class="company-feature-item">
+          <span class="company-feature-item__dot" aria-hidden="true"></span>
+          <div class="company-feature-item__content">
+            <h2 class="company-feature-item__title">サポート体制・継続的なアップデート</h2>
+            <p class="company-feature-item__desc">
+              導入後も専任担当者が伴走。法改正や業務変化に合わせた機能追加・改善を継続的に提供し、長期的なDX推進をサポートします。
+            </p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 注記 -->
+    <div class="company-note">
+      <p class="company-note__text">
+        ※ご質問やご相談は<a href="#contact">お問い合わせフォーム</a>よりお気軽にどうぞ。個別のご要望についても、担当者が丁寧に対応いたします。詳しくは<a href="#privacy">プライバシーポリシー</a>をご確認ください。
+      </p>
+    </div>
+
+    <!-- 運営会社 -->
+    <section class="company-operator" id="operator">
+      <h2 class="company-section__heading">運営会社</h2>
+      <div class="company-operator__card">
+        <div class="company-operator__card-inner">
+          <div class="company-operator__icon" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="12" width="22" height="14" rx="1" stroke="#00A37E" stroke-width="1.8"/>
+              <path d="M1 13L14 3L27 13" stroke="#00A37E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="10" y="18" width="8" height="8" rx="1" stroke="#00A37E" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <div class="company-operator__info">
+            <p class="company-operator__name">株式会社ダテ薬局</p>
+            <p class="company-operator__detail">岡山県玉野市築港1-11-19</p>
+            <p class="company-operator__detail">TEL: 086-33-24165</p>
+            <p class="company-operator__detail">
+              <a href="https://www.date-yakkyoku.com" target="_blank" rel="noopener" class="company-operator__url">https://www.date-yakkyoku.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- プライバシーポリシー -->
+    <section class="company-privacy" id="privacy">
+      <h2 class="company-section__heading">プライバシーポリシー</h2>
+      <p class="company-privacy__desc">
+        当社は、お客様からお預かりする個人情報を適切に管理・保護することを重要な責務と考え、個人情報保護法その他の関連法令を遵守した取り扱いに努めております。収集した個人情報は、サービスの提供・改善およびお問い合わせへの対応にのみ使用し、お客様の同意なく第三者に提供することはございません。
+      </p>
+      <a href="privacy.html" class="company-privacy__link">
+        プライバシーポリシーはこちら
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6 3l5 5-5 5" stroke="#00A37E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </section>
+
+    <!-- お問い合わせ -->
+    <section class="company-contact" id="contact">
+      <h2 class="company-section__heading">お問い合わせ</h2>
+      <p class="company-contact__desc">
+        サービスに関するご質問・ご相談・資料請求など、お気軽にお問い合わせください。専任担当者が迅速にご対応いたします。通常2営業日以内にご返信いたします。
+      </p>
+      <a href="index.html#contact-form" class="company-contact__cta">
+        <svg class="company-contact__cta-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="14" cy="14" r="14" fill="#FFFFFF"/>
+          <path d="M12 9l5 5-5 5" stroke="#00A37E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        お問い合わせはこちら
+      </a>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p class="site-footer__links">
+      <a href="company.html">会社概要</a> / <a href="terms.html">利用規約</a> / <a href="privacy.html">プライバシーポリシー</a>
+    </p>
+    <p class="site-footer__copyright">© ダテ薬局 All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>

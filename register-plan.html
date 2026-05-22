@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サービス選択 | Tiny Snap</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* =========================================================
+       Service selection page
+       ========================================================= */
+
+    .register-page {
+      min-height: calc(100vh - var(--header-height));
+      background: var(--color-gray-100, #F1F5F9);
+      padding: 48px 24px 100px;
+    }
+
+    /* ── Step indicator ── */
+    .step-nav {
+      max-width: 860px;
+      margin: 0 auto 36px;
+    }
+    .step-nav__list {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .step-nav__item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+    .step-nav__item::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: var(--color-border-light, #E2E8F0);
+    }
+    .step-nav__item:last-child::after { display: none; }
+    .step-nav__btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .step-nav__circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--color-border-light, #E2E8F0);
+      background: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-gray-400, #94A3B8);
+    }
+    .step-nav__label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--color-gray-400, #94A3B8);
+      white-space: nowrap;
+    }
+    .step-nav__item--done .step-nav__circle {
+      background: var(--color-brand-500);
+      border-color: var(--color-brand-500);
+      color: var(--color-white);
+    }
+    .step-nav__item--done .step-nav__label { color: var(--color-brand-500); }
+    .step-nav__item--done::after { background: var(--color-brand-300, #47BDA1); }
+    .step-nav__item--active .step-nav__circle {
+      background: var(--color-brand-500);
+      border-color: var(--color-brand-500);
+      color: var(--color-white);
+    }
+    .step-nav__item--active .step-nav__label {
+      color: var(--color-brand-500);
+      font-weight: 700;
+    }
+
+    /* ── Layout: 2-col on desktop ── */
+    .plan-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* ── Page header ── */
+    .plan-header {
+      margin-bottom: 24px;
+    }
+    .plan-header__title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-gray-900);
+      margin: 0 0 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .plan-header__title svg { color: var(--color-brand-500); }
+    .plan-header__desc {
+      font-size: 13px;
+      color: var(--color-gray-500, #64748B);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ── Service group card ── */
+    .service-group {
+      background: var(--color-white);
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.03);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .service-group:last-child { margin-bottom: 0; }
+
+    .service-group__header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--color-border-light, #E2E8F0);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .service-group__name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-gray-700, #334155);
+      margin: 0;
+    }
+    .service-group__badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: var(--color-brand-50, #E6F6F2);
+      color: var(--color-brand-500);
+    }
+
+    /* ── Service option row ── */
+    .service-option {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--color-border-light, #E2E8F0);
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+    .service-option:last-child { border-bottom: none; }
+    .service-option:hover { background: #FAFBFC; }
+
+    /* Selected state */
+    .service-option.is-selected {
+      background: var(--color-brand-50, #E6F6F2);
+      border-left: 3px solid var(--color-brand-500);
+      padding-left: 21px;
+    }
+    .service-option.is-selected .service-option__name {
+      color: var(--color-brand-500);
+      font-weight: 700;
+    }
+
+    /* Option (add-on) row */
+    .service-option--addon {
+      padding-left: 48px;
+      background: #FAFAFA;
+    }
+    .service-option--addon:hover { background: #F5F5F5; }
+    .service-option--addon.is-selected {
+      padding-left: 45px;
+    }
+    .service-option--addon .service-option__tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #FEF3C7;
+      color: #D97706;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .service-option--addon.is-disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    /* Radio button */
+    .service-option__radio {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--color-border-light, #E2E8F0);
+      background: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s;
+    }
+    .service-option.is-selected .service-option__radio {
+      border-color: var(--color-brand-500);
+      background: var(--color-brand-500);
+    }
+    .service-option__radio-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-white);
+      opacity: 0;
+      transition: opacity 0.12s;
+    }
+    .service-option.is-selected .service-option__radio-dot { opacity: 1; }
+
+    /* Checkbox (for addon) */
+    .service-option__checkbox {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      border: 2px solid var(--color-border-light, #E2E8F0);
+      background: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .service-option.is-selected .service-option__checkbox {
+      border-color: var(--color-brand-500);
+      background: var(--color-brand-500);
+    }
+    .service-option__check-icon {
+      display: none;
+    }
+    .service-option.is-selected .service-option__check-icon {
+      display: block;
+    }
+
+    /* Info */
+    .service-option__info {
+      flex: 1;
+      min-width: 0;
+    }
+    .service-option__name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-gray-900);
+      margin: 0 0 2px;
+      line-height: 1.4;
+    }
+    .service-option__desc {
+      font-size: 12px;
+      color: var(--color-gray-500, #64748B);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Pricing */
+    .service-option__pricing {
+      flex-shrink: 0;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .service-option__price {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-brand-500);
+      white-space: nowrap;
+    }
+    .service-option__price-label {
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--color-gray-400, #94A3B8);
+    }
+    .service-option__price--zero {
+      color: var(--color-gray-400, #94A3B8);
+    }
+    .service-option__price--none {
+      font-size: 13px;
+      color: var(--color-gray-400, #94A3B8);
+    }
+
+    /* ── Summary card (sticky right column) ── */
+    .summary-card {
+      background: var(--color-white);
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.03);
+      overflow: hidden;
+      position: sticky;
+      top: calc(var(--header-height) + 16px);
+    }
+
+    .summary-card__header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--color-border-light, #E2E8F0);
+    }
+    .summary-card__title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-gray-900);
+      margin: 0;
+    }
+
+    /* Billing toggle */
+    .billing-toggle {
+      display: flex;
+      gap: 0;
+      background: var(--color-gray-100, #F1F5F9);
+      border-radius: 8px;
+      padding: 3px;
+      margin: 16px 24px 0;
+    }
+    .billing-toggle__btn {
+      flex: 1;
+      padding: 7px 0;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-gray-500, #64748B);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .billing-toggle__btn.is-active {
+      background: var(--color-white);
+      color: var(--color-gray-900);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.10);
+    }
+    .billing-toggle__badge {
+      display: inline-block;
+      font-size: 10px;
+      padding: 1px 5px;
+      background: #FEF3C7;
+      color: #D97706;
+      border-radius: 4px;
+      margin-left: 4px;
+      font-weight: 700;
+    }
+
+    /* Selected items list */
+    .summary-items {
+      padding: 16px 24px;
+      min-height: 80px;
+      border-bottom: 1px solid var(--color-border-light, #E2E8F0);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .summary-empty {
+      font-size: 13px;
+      color: var(--color-gray-300, #CBD5E1);
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .summary-item__name {
+      font-size: 13px;
+      color: var(--color-gray-700, #334155);
+      line-height: 1.4;
+    }
+    .summary-item__price {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-gray-900);
+      white-space: nowrap;
+    }
+
+    /* Total */
+    .summary-total {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--color-border-light, #E2E8F0);
+    }
+    .summary-total__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .summary-total__row:last-child { margin-bottom: 0; }
+    .summary-total__label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-gray-900);
+    }
+    .summary-total__amount {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-brand-500);
+    }
+    .summary-total__amount--sub {
+      font-size: 14px;
+      color: var(--color-gray-500, #64748B);
+    }
+    .summary-total__note {
+      font-size: 11px;
+      color: var(--color-gray-400, #94A3B8);
+      margin: 8px 0 0;
+    }
+
+    /* Actions */
+    .summary-actions {
+      padding: 16px 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-next {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      height: 50px;
+      background: var(--color-brand-500);
+      color: var(--color-white);
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .btn-next:hover {
+      background: var(--color-brand-600, #008C6D);
+      transform: translateY(-1px);
+    }
+    .btn-next:disabled {
+      background: var(--color-gray-300, #CBD5E1);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-reset {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 40px;
+      background: none;
+      border: 1.5px solid var(--color-border-light, #E2E8F0);
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-gray-500, #64748B);
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-reset:hover {
+      border-color: var(--color-gray-400, #94A3B8);
+      color: var(--color-gray-700, #334155);
+    }
+
+    /* ── SP: summary moves below ── */
+    @media (max-width: 900px) {
+      .plan-layout {
+        grid-template-columns: 1fr;
+        max-width: 680px;
+      }
+      .plan-left { order: 1; }
+      .summary-card { position: static; order: 2; }
+    }
+
+    @media (max-width: 768px) {
+      .register-page { padding: 28px 16px 60px; }
+      .step-nav { max-width: 100%; margin-bottom: 24px; }
+      .step-nav__circle { width: 28px; height: 28px; font-size: 12px; }
+      .step-nav__label { font-size: 10px; }
+      .service-group__header { padding: 14px 16px; }
+      .service-option { padding: 14px 16px; gap: 12px; }
+      .service-option.is-selected { padding-left: 13px; }
+      .service-option--addon { padding-left: 32px; }
+      .service-option--addon.is-selected { padding-left: 29px; }
+      .service-option__name { font-size: 13px; }
+      .service-option__pricing { display: none; }
+      .summary-card__header,
+      .summary-items,
+      .summary-total,
+      .summary-actions { padding-left: 20px; padding-right: 20px; }
+      .billing-toggle { margin-left: 20px; margin-right: 20px; }
+    }
+
+    @media (max-width: 400px) {
+      .step-nav__label { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__logo" aria-label="Tiny Snap ホーム">Tiny Snap</a>
+      <nav class="site-header__nav" aria-label="グローバルナビゲーション">
+        <ul class="site-header__nav-list">
+          <li class="site-header__nav-item"><a href="index.html">TOP</a></li>
+          <li class="site-header__nav-item"><a href="company.html">会社概要</a></li>
+        </ul>
+        <div class="site-header__actions">
+          <a href="register.html" class="site-header__cta">お申込み</a>
+          <a href="#login" class="site-header__login">ログイン</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="register-page">
+
+    <!-- Step indicator -->
+    <nav class="step-nav" aria-label="申込みステップ">
+      <ol class="step-nav__list">
+        <li class="step-nav__item step-nav__item--done">
+          <div class="step-nav__btn">
+            <span class="step-nav__circle">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="step-nav__label">お客様情報</span>
+          </div>
+        </li>
+        <li class="step-nav__item step-nav__item--done">
+          <div class="step-nav__btn">
+            <span class="step-nav__circle">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="step-nav__label">メール確認</span>
+          </div>
+        </li>
+        <li class="step-nav__item step-nav__item--active">
+          <div class="step-nav__btn">
+            <span class="step-nav__circle" aria-current="step">3</span>
+            <span class="step-nav__label">サービス選択</span>
+          </div>
+        </li>
+        <li class="step-nav__item">
+          <div class="step-nav__btn">
+            <span class="step-nav__circle">4</span>
+            <span class="step-nav__label">決済情報</span>
+          </div>
+        </li>
+        <li class="step-nav__item">
+          <div class="step-nav__btn">
+            <span class="step-nav__circle">5</span>
+            <span class="step-nav__label">完了</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="plan-layout">
+
+      <!-- Left: service groups -->
+      <div class="plan-left">
+        <div class="plan-header">
+          <h1 class="plan-header__title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+            ご利用サービスの選択
+          </h1>
+          <p class="plan-header__desc">カテゴリごとにプランを1つ選択してください。オプションは基本プランを選択後に追加できます。</p>
+        </div>
+
+        <!-- FAQ -->
+        <div class="service-group">
+          <div class="service-group__header">
+            <h2 class="service-group__name">FAQ</h2>
+            <span class="service-group__badge">いずれか1つ</span>
+          </div>
+
+          <div class="service-option is-selected" data-group="faq" data-id="faq-none" data-monthly="0" data-annual="0" data-name="FAQ — 利用しない" data-type="radio" role="radio" aria-checked="true" tabindex="0">
+            <div class="service-option__radio"><div class="service-option__radio-dot"></div></div>
+            <div class="service-option__info">
+              <p class="service-option__name">利用しない</p>
+            </div>
+            <div class="service-option__pricing">
+              <span class="service-option__price--none">—</span>
+            </div>
+          </div>
+
+          <div class="service-option" data-group="faq" data-id="faq-small" data-monthly="9900" data-annual="108900" data-name="FAQ Small" data-type="radio" role="radio" aria-checked="false" tabindex="0">
+            <div class="service-option__radio"><div class="service-option__radio-dot"></div></div>
+            <div class="service-option__info">
+              <p class="service-option__name">FAQ Small</p>
+              <p class="service-option__desc">月最大2,000件の問い合わせに対応。小規模チーム向け。</p>
+            </div>
+            <div class="service-option__pricing">
+              <span class="service-option__price js-price" data-monthly="9,900" data-annual="108,900">¥9,900</span>
+              <span class="service-option__price-label js-period">/ 月</span>
+            </div>
+          </div>
+
+          <div class="service-option" data-group="faq" data-id="faq-medium" data-monthly="19800" data-annual="217800" data-name="FAQ Medium" data-type="radio" role="radio" aria-checked="false" tabindex="0">
+            <div class="service-option__radio"><div class="service-option__radio-dot"></div></div>
+            <div class="service-option__info">
+              <p class="service-option__name">FAQ Medium</p>
+              <p class="service-option__desc">月最大5,000件に対応。中規模の薬局・クリニック向け。</p>
+            </div>
+            <div class="service-option__pricing">
+              <span class="service-option__price js-price" data-monthly="19,800" data-annual="217,800">¥19,800</span>
+              <span class="service-option__price-label js-period">/ 月</span>
+            </div>
+          </div>
+
+          <div class="service-option" data-group="faq" data-id="faq-giant" data-monthly="39600" data-annual="435600" data-name="FAQ Giant" data-type="radio" role="radio" aria-checked="false" tabindex="0">
+            <div class="service-option__radio"><div class="service-option__radio-dot"></div></div>
+            <div class="service-option__info">
+              <p class="service-option__name">FAQ Giant</p>
+              <p class="service-option__desc">月最大10,000件に対応。複数店舗・大規模運用向け。</p>
+            </div>
+            <div class="service-option__pricing">
+              <span class="service-option__price js-price" data-monthly="39,600" data-annual="435,600">¥39,600</span>
+              <span class="service-option__price-label js-period">/ 月</span>
+            </div>
+          </div>
+
+          <!-- Addon -->
+          <div class="service-option service-option--addon is-disabled" data-group="faq-addon" data-id="faq-lineworks" data-monthly="6600" data-annual="72600" data-name="FAQ LINE WORKSボット" data-type="checkbox" role="checkbox" aria-checked="false" tabindex="0">
+            <div class="service-option__checkbox">
+              <svg class="service-option__check-icon" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5L4.5 8L9 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="service-option__info">
+              <p class="service-option__name">
+                FAQ LINE WORKSボット
+                <span class="service-option__tag">オプション</span>
+              </p>
+              <p class="service-option__desc">LINE WORKSのボット経由で社内FAQを検索・回答。基本プラン必須。</p>
+            </div>
+            <div class="service-option__pricing">
+              <span class="service-option__price js-price" data-monthly="6,600" data-annual="72,600">¥6,600</span>
+              <span class="service-option__price-label js-period">/ 月</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LINE WORKS AI Bot -->
+        <div class="service-group">
+          <div class="service-group__header">
+            <h2 class="service-group__name">LINE WORKS AIボット</h2>
+            <span class="service-group__badge">いずれか1つ</span>
+          </div>
+
+          <div class="service-option is-selected" data-group="lwai" data-id="lwai-none" data-monthly="0" data-annual="0" data-name="LINE WORKS AIボット — 利用しない" data-type="radio" role="radio" aria-checked="true" tabindex="0">
+            <div class="service-option__radio"><div class="service-option__radio-dot"></div></div>
+            <div class="service-option__info">
+              <p class="service-option__name">利用しない</p>
+            </div>
+            <div class="service-option__pricing">
+              <span class="service-option__price--none">—</span>
+            </div>
+          </div>
+
+          <div class="service-option" data-group="lwai" data-id="lwai-trial" data-monthly="0" data-annual="0" data-name="LINE WORKS AIボット 試用版（1ヶ月）" data-type="radio" role="radio" aria-checked="false" tabindex="0">
+            <div class="service-option__radio"><div class="service-option__radio-dot"></div></div>
+            <div class="service-option__info">
+              <p class="service-option__name">試用版（1ヶ月）</p>
+              <p class="service-option__desc">GeminiによるGrounding機能を1ヶ月間無料でお試し。</p>
+            </div>
+            <div class="service-option__pricing">
+              <span class="service-option__price service-option__price--zero">¥0</span>
+              <span class="service-option__price-label js-period">/ 月</span>
+            </div>
+          </div>
+
+          <div class="service-option" data-group="lwai" data-id="lwai-s" data-monthly="5500" data-annual="60500" data-name="LINE WORKS AIボット S" data-type="radio" role="radio" aria-checked="false" tabindex="0">
+            <div class="service-option__radio"><div class="service-option__radio-dot"></div></div>
+            <div class="service-option__info">
+              <p class="service-option__name">LINE WORKS AIボット S</p>
+              <p class="service-option__desc">GeminiによるGrounding。月最大2,000件まで利用可能。</p>
+            </div>
+            <div class="service-option__pricing">
+              <span class="service-option__price js-price" data-monthly="5,500" data-annual="60,500">¥5,500</span>
+              <span class="service-option__price-label js-period">/ 月</span>
+            </div>
+          </div>
+
+          <div class="service-option" data-group="lwai" data-id="lwai-m" data-monthly="11000" data-annual="121000" data-name="LINE WORKS AIボット M" data-type="radio" role="radio" aria-checked="false" tabindex="0">
+            <div class="service-option__radio"><div class="service-option__radio-dot"></div></div>
+            <div class="service-option__info">
+              <p class="service-option__name">LINE WORKS AIボット M</p>
+              <p class="service-option__desc">GeminiによるGrounding。月最大5,000件まで利用可能。</p>
+            </div>
+            <div class="service-option__pricing">
+              <span class="service-option__price js-price" data-monthly="11,000" data-annual="121,000">¥11,000</span>
+              <span class="service-option__price-label js-period">/ 月</span>
+            </div>
+          </div>
+
+          <div class="service-option" data-group="lwai" data-id="lwai-l" data-monthly="22000" data-annual="242000" data-name="LINE WORKS AIボット L" data-type="radio" role="radio" aria-checked="false" tabindex="0">
+            <div class="service-option__radio"><div class="service-option__radio-dot"></div></div>
+            <div class="service-option__info">
+              <p class="service-option__name">LINE WORKS AIボット L</p>
+              <p class="service-option__desc">GeminiによるGrounding。月最大10,000件まで利用可能。</p>
+            </div>
+            <div class="service-option__pricing">
+              <span class="service-option__price js-price" data-monthly="22,000" data-annual="242,000">¥22,000</span>
+              <span class="service-option__price-label js-period">/ 月</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 電子帳票保存 -->
+        <div class="service-group">
+          <div class="service-group__header">
+            <h2 class="service-group__name">電子帳票保存</h2>
+            <span class="service-group__badge">いずれか1つ</span>
+          </div>
+
+          <div class="service-option is-selected" data-group="doc" data-id="doc-none" data-monthly="0" data-annual="0" data-name="電子帳票保存 — 利用しない" data-type="radio" role="radio" aria-checked="true" tabindex="0">
+            <div class="service-option__radio"><div class="service-option__radio-dot"></div></div>
+            <div class="service-option__info">
+              <p class="service-option__name">利用しない</p>
+            </div>
+            <div class="service-option__pricing">
+              <span class="service-option__price--none">—</span>
+            </div>
+          </div>
+
+          <div class="service-option" data-group="doc" data-id="doc-base" data-monthly="11000" data-annual="121000" data-name="電子帳票保存" data-type="radio" role="radio" aria-checked="false" tabindex="0">
+            <div class="service-option__radio"><div class="service-option__radio-dot"></div></div>
+            <div class="service-option__info">
+              <p class="service-option__name">電子帳票保存</p>
+              <p class="service-option__desc">請求書・領収書・納品書などのPDF・画像ファイルを電子保存。</p>
+            </div>
+            <div class="service-option__pricing">
+              <span class="service-option__price js-price" data-monthly="11,000" data-annual="121,000">¥11,000</span>
+              <span class="service-option__price-label js-period">/ 月</span>
+            </div>
+          </div>
+
+          <!-- Addon -->
+          <div class="service-option service-option--addon is-disabled" data-group="doc-addon" data-id="doc-ocr" data-monthly="16500" data-annual="181500" data-name="電子帳票自動読取（オプション）" data-type="checkbox" role="checkbox" aria-checked="false" tabindex="0">
+            <div class="service-option__checkbox">
+              <svg class="service-option__check-icon" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5L4.5 8L9 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="service-option__info">
+              <p class="service-option__name">
+                電子帳票自動読取
+                <span class="service-option__tag">オプション</span>
+              </p>
+              <p class="service-option__desc">AIが帳票を自動読取・分類して保管。電子帳票保存の追加機能。</p>
+            </div>
+            <div class="service-option__pricing">
+              <span class="service-option__price js-price" data-monthly="16,500" data-annual="181,500">¥16,500</span>
+              <span class="service-option__price-label js-period">/ 月</span>
+            </div>
+          </div>
+        </div>
+      </div><!-- /plan-left -->
+
+      <!-- Right: summary -->
+      <div>
+        <div class="summary-card">
+          <div class="summary-card__header">
+            <p class="summary-card__title">お申込み内容の確認</p>
+          </div>
+
+          <!-- Billing toggle -->
+          <div class="billing-toggle" role="group" aria-label="支払い周期">
+            <button class="billing-toggle__btn is-active" id="toggle-monthly" type="button">月払い</button>
+            <button class="billing-toggle__btn" id="toggle-annual" type="button">
+              年払い<span class="billing-toggle__badge">約10%OFF</span>
+            </button>
+          </div>
+
+          <!-- Items -->
+          <div class="summary-items" id="summary-items">
+            <p class="summary-empty">サービスを選択してください</p>
+          </div>
+
+          <!-- Total -->
+          <div class="summary-total">
+            <div class="summary-total__row">
+              <span class="summary-total__label">合計</span>
+              <span class="summary-total__amount" id="summary-total">¥0</span>
+            </div>
+            <p class="summary-total__note" id="summary-period-note">月払いの合計金額です（税込）</p>
+          </div>
+
+          <!-- Actions -->
+          <div class="summary-actions">
+            <button class="btn-next" type="button" id="btn-next" disabled>
+              次へ進む
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M6 4l4 4-4 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="btn-reset" type="button" id="btn-reset">リセット</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /plan-layout -->
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__links">
+      <a href="company.html">会社概要</a> / <a href="terms.html">利用規約</a> / <a href="privacy.html">プライバシーポリシー</a>
+    </p>
+    <p class="site-footer__copyright">© ダテ薬局 All Rights Reserved</p>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var isAnnual = false;
+
+    /* ── State: selected values ── */
+    var state = {
+      faq:       { id: 'faq-none',  monthly: 0, annual: 0, name: null },
+      'faq-addon': { id: null, monthly: 0, annual: 0, name: null, checked: false },
+      lwai:      { id: 'lwai-none', monthly: 0, annual: 0, name: null },
+      doc:       { id: 'doc-none',  monthly: 0, annual: 0, name: null },
+      'doc-addon': { id: null, monthly: 0, annual: 0, name: null, checked: false }
+    };
+
+    /* ── Helpers ── */
+    function fmt(n) {
+      return '¥' + n.toLocaleString('ja-JP');
+    }
+
+    function getAmount(item) {
+      return isAnnual ? item.annual : item.monthly;
+    }
+
+    /* ── Update price labels in rows ── */
+    function updatePriceLabels() {
+      document.querySelectorAll('.js-price').forEach(function (el) {
+        el.textContent = '¥' + (isAnnual ? el.dataset.annual : el.dataset.monthly);
+      });
+      document.querySelectorAll('.js-period').forEach(function (el) {
+        el.textContent = isAnnual ? '/ 年' : '/ 月';
+      });
+    }
+
+    /* ── Update summary panel ── */
+    function updateSummary() {
+      var container = document.getElementById('summary-items');
+      var totalEl   = document.getElementById('summary-total');
+      var noteEl    = document.getElementById('summary-period-note');
+      var nextBtn   = document.getElementById('btn-next');
+
+      var lines = [];
+      var total = 0;
+
+      var groups = ['faq', 'faq-addon', 'lwai', 'doc', 'doc-addon'];
+      groups.forEach(function (g) {
+        var s = state[g];
+        var isAddon = g.indexOf('addon') !== -1;
+        if (isAddon) {
+          if (!s.checked || !s.name) return;
+        } else {
+          if (!s.name) return;
+        }
+        var amt = getAmount(s);
+        total += amt;
+        lines.push({ name: s.name, amount: amt });
+      });
+
+      // Render
+      if (lines.length === 0) {
+        container.innerHTML = '<p class="summary-empty">サービスを選択してください</p>';
+        totalEl.textContent = '¥0';
+        nextBtn.disabled = true;
+      } else {
+        container.innerHTML = lines.map(function (l) {
+          return '<div class="summary-item">'
+            + '<span class="summary-item__name">' + l.name + '</span>'
+            + '<span class="summary-item__price">' + fmt(l.amount) + '</span>'
+            + '</div>';
+        }).join('');
+        totalEl.textContent = fmt(total);
+        nextBtn.disabled = false;
+      }
+
+      noteEl.textContent = isAnnual ? '年払いの合計金額です（税込）' : '月払いの合計金額です（税込）';
+    }
+
+    /* ── Handle option click ── */
+    function handleOptionClick(el) {
+      var group = el.dataset.group;
+      var id    = el.dataset.id;
+      var type  = el.dataset.type;
+      var monthly = parseInt(el.dataset.monthly, 10) || 0;
+      var annual  = parseInt(el.dataset.annual, 10) || 0;
+      var name    = el.dataset.name;
+
+      if (type === 'radio') {
+        // Deselect all in same group
+        document.querySelectorAll('[data-group="' + group + '"]').forEach(function (opt) {
+          opt.classList.remove('is-selected');
+          opt.setAttribute('aria-checked', 'false');
+        });
+        el.classList.add('is-selected');
+        el.setAttribute('aria-checked', 'true');
+
+        // Store
+        state[group] = {
+          id: id,
+          monthly: monthly,
+          annual: annual,
+          name: (monthly === 0 && id !== 'lwai-trial') ? null : name
+        };
+
+        // Handle addon availability
+        var addonGroup = group + '-addon';
+        var addonEls = document.querySelectorAll('[data-group="' + addonGroup + '"]');
+        if (addonEls.length) {
+          // Enable/disable addon
+          var isNone = (id.indexOf('-none') !== -1);
+          addonEls.forEach(function (a) {
+            if (isNone) {
+              a.classList.add('is-disabled');
+              a.classList.remove('is-selected');
+              a.setAttribute('aria-checked', 'false');
+              state[addonGroup] = { id: null, monthly: 0, annual: 0, name: null, checked: false };
+            } else {
+              a.classList.remove('is-disabled');
+            }
+          });
+        }
+
+      } else if (type === 'checkbox') {
+        // Toggle
+        var wasSelected = el.classList.contains('is-selected');
+        el.classList.toggle('is-selected');
+        el.setAttribute('aria-checked', String(!wasSelected));
+        state[group] = {
+          id: id,
+          monthly: monthly,
+          annual: annual,
+          name: name,
+          checked: !wasSelected
+        };
+      }
+
+      updateSummary();
+    }
+
+    /* ── Attach listeners ── */
+    document.querySelectorAll('.service-option').forEach(function (el) {
+      el.addEventListener('click', function () {
+        if (el.classList.contains('is-disabled')) return;
+        handleOptionClick(el);
+      });
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (!el.classList.contains('is-disabled')) handleOptionClick(el);
+        }
+      });
+    });
+
+    /* ── Billing toggle ── */
+    document.getElementById('toggle-monthly').addEventListener('click', function () {
+      if (isAnnual) {
+        isAnnual = false;
+        document.getElementById('toggle-monthly').classList.add('is-active');
+        document.getElementById('toggle-annual').classList.remove('is-active');
+        updatePriceLabels();
+        updateSummary();
+      }
+    });
+
+    document.getElementById('toggle-annual').addEventListener('click', function () {
+      if (!isAnnual) {
+        isAnnual = true;
+        document.getElementById('toggle-annual').classList.add('is-active');
+        document.getElementById('toggle-monthly').classList.remove('is-active');
+        updatePriceLabels();
+        updateSummary();
+      }
+    });
+
+    /* ── Reset ── */
+    document.getElementById('btn-reset').addEventListener('click', function () {
+      // Reset all to "none"
+      ['faq', 'lwai', 'doc'].forEach(function (group) {
+        document.querySelectorAll('[data-group="' + group + '"]').forEach(function (el) {
+          el.classList.remove('is-selected');
+          el.setAttribute('aria-checked', 'false');
+        });
+        var noneEl = document.querySelector('[data-group="' + group + '"][data-id="' + group + '-none"]');
+        if (noneEl) {
+          noneEl.classList.add('is-selected');
+          noneEl.setAttribute('aria-checked', 'true');
+        }
+        state[group] = { id: group + '-none', monthly: 0, annual: 0, name: null };
+
+        // Disable addons
+        var addonGroup = group + '-addon';
+        document.querySelectorAll('[data-group="' + addonGroup + '"]').forEach(function (a) {
+          a.classList.add('is-disabled');
+          a.classList.remove('is-selected');
+          a.setAttribute('aria-checked', 'false');
+        });
+        state[addonGroup] = { id: null, monthly: 0, annual: 0, name: null, checked: false };
+      });
+      updateSummary();
+    });
+
+    /* ── Next ── */
+    document.getElementById('btn-next').addEventListener('click', function () {
+      window.location.href = 'register-payment.html';
+    });
+
+    /* ── Init ── */
+    updateSummary();
+
+  })();
+  </script>
+
+</body>
+</html>

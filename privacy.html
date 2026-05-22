@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー | Tiny Snap</title>
+  <meta name="description" content="Tiny Snap（TinySnap）のプライバシーポリシーです。個人情報の取扱いについてご確認ください。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* =========================================================
+       Privacy page — page-specific styles
+       ========================================================= */
+
+    .privacy-page {
+      padding-top: 80px;
+      padding-bottom: 100px;
+    }
+
+    /* ── Page header ── */
+    .privacy-hero {
+      background: var(--color-brand-50, #E6F6F2);
+      padding: 60px 124px 52px;
+    }
+
+    .privacy-hero__label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-brand-500);
+      margin-bottom: 16px;
+    }
+
+    .privacy-hero__label::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-brand-500);
+    }
+
+    .privacy-hero__heading {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--color-gray-900);
+      margin: 0 0 16px;
+    }
+
+    .privacy-hero__date {
+      font-size: 14px;
+      color: var(--color-gray-500, #64748B);
+      margin: 0;
+    }
+
+    /* ── Content area ── */
+    .privacy-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 64px 24px 0;
+    }
+
+    .privacy-content__intro {
+      font-size: 16px;
+      line-height: 1.9;
+      color: var(--color-gray-700, #334155);
+      margin: 0 0 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--color-border-light, #E2E8F0);
+    }
+
+    /* ── Article (each 条) ── */
+    .privacy-article {
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--color-border-light, #E2E8F0);
+    }
+
+    .privacy-article:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .privacy-article__heading {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-gray-900);
+      margin: 0 0 14px;
+      line-height: 1.5;
+      padding-left: 14px;
+      border-left: 3px solid var(--color-brand-500);
+    }
+
+    .privacy-article__body {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--color-gray-700, #334155);
+      margin: 0;
+    }
+
+    .privacy-article__body + .privacy-article__list {
+      margin-top: 14px;
+    }
+
+    .privacy-article__list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .privacy-article__list li {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--color-gray-700, #334155);
+      padding-left: 22px;
+      position: relative;
+    }
+
+    .privacy-article__list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-brand-300, #47BDA1);
+    }
+
+    /* ── Contact box (第10条) ── */
+    .privacy-contact-box {
+      margin-top: 20px;
+      background: var(--color-brand-50, #E6F6F2);
+      border-radius: 12px;
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .privacy-contact-box__row {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--color-gray-700, #334155);
+      margin: 0;
+    }
+
+    .privacy-contact-box__row a {
+      color: var(--color-brand-500);
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    .privacy-contact-box__row a:hover {
+      opacity: 0.75;
+    }
+
+
+    /* =========================================================
+       SP overrides (max-width: 768px)
+       ========================================================= */
+    @media (max-width: 768px) {
+
+      .privacy-page {
+        padding-top: 40px;
+        padding-bottom: 60px;
+      }
+
+      .privacy-hero {
+        padding: 40px 20px 36px;
+      }
+
+      .privacy-hero__heading {
+        font-size: 28px;
+      }
+
+      .privacy-content {
+        padding: 40px 20px 0;
+      }
+
+      .privacy-article__heading {
+        font-size: 16px;
+      }
+
+      .privacy-article__body,
+      .privacy-article__list li {
+        font-size: 14px;
+      }
+
+      .privacy-contact-box {
+        padding: 20px;
+      }
+
+      .privacy-contact-box__row {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__logo" aria-label="Tiny Snap ホーム">Tiny Snap</a>
+
+      <nav class="site-header__nav" aria-label="グローバルナビゲーション">
+        <ul class="site-header__nav-list">
+          <li class="site-header__nav-item">
+            <a href="index.html">TOP</a>
+          </li>
+          <li class="site-header__nav-item">
+            <a href="company.html">会社概要</a>
+          </li>
+        </ul>
+
+        <div class="site-header__actions">
+          <a href="register.html" class="site-header__cta">お申込み</a>
+          <a href="#login" class="site-header__login">ログイン</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="privacy-page">
+
+    <!-- Page header -->
+    <div class="privacy-hero">
+      <p class="privacy-hero__label">Privacy Policy</p>
+      <h1 class="privacy-hero__heading">プライバシーポリシー</h1>
+      <p class="privacy-hero__date">制定日：2024年4月1日</p>
+    </div>
+
+    <!-- Content -->
+    <div class="privacy-content">
+
+      <p class="privacy-content__intro">
+        TinySnap（以下，「当社」といいます。）は，本ウェブサイト上で提供するサービス（以下，「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。
+      </p>
+
+      <article class="privacy-article">
+        <h2 class="privacy-article__heading">第1条（個人情報）</h2>
+        <p class="privacy-article__body">
+          「個人情報」とは，個人情報保護法にいう「個人情報」を指すものとし，生存する個人に関する情報であって，当該情報に含まれる氏名，生年月日，住所，電話番号，連絡先その他の記述等により特定の個人を識別できる情報および容貌，指紋，声紋にかかるデータ，および健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別符号）を指します。
+        </p>
+      </article>
+
+      <article class="privacy-article">
+        <h2 class="privacy-article__heading">第2条（個人情報の収集方法）</h2>
+        <p class="privacy-article__body">
+          当社は，ユーザーが利用登録をする際に氏名，生年月日，住所，電話番号，メールアドレス，銀行口座番号，クレジットカード番号などの個人情報をお尋ねすることがあります。また，ユーザーと提携先などとの間でなされたユーザーの個人情報を含む取引記録や決済に関する情報を，当社の提携先（情報提供元，広告主，広告配信先などを含みます。以下，「提携先」といいます。）などから収集することがあります。
+        </p>
+      </article>
+
+      <article class="privacy-article">
+        <h2 class="privacy-article__heading">第3条（個人情報を収集・利用する目的）</h2>
+        <p class="privacy-article__body">当社が個人情報を収集・利用する目的は，以下のとおりです。</p>
+        <ul class="privacy-article__list">
+          <li>当社サービスの提供・運営のため</li>
+          <li>ユーザーからのお問い合わせに回答するため（本人確認を行うことを含む）</li>
+          <li>ユーザーが利用中のサービスの新機能，更新情報，キャンペーン等および当社が提供する他のサービスの案内のメールを送付するため</li>
+          <li>メンテナンス，重要なお知らせなど必要に応じたご連絡のため</li>
+          <li>利用規約に違反したユーザーや，不正・不当な目的でサービスを利用しようとするユーザーの特定をおこない，利用をお断りするため</li>
+          <li>ユーザーにご自身の登録情報の閲覧や変更，削除，ご利用状況の閲覧を行っていただくため</li>
+          <li>有料サービスにおいて，ユーザーに利用料金を請求するため</li>
+          <li>上記の利用目的に付随する目的</li>
+        </ul>
+      </article>
+
+      <article class="privacy-article">
+        <h2 class="privacy-article__heading">第4条（利用目的の変更）</h2>
+        <p class="privacy-article__body">
+          当社は，利用目的が変更前と関連性を有すると合理的に認められる場合に限り，個人情報の利用目的を変更するものとします。利用目的の変更を行った場合には，変更後の目的について，当社所定の方法により，ユーザーに通知し，または本ウェブサイト上に公表するものとします。
+        </p>
+      </article>
+
+      <article class="privacy-article">
+        <h2 class="privacy-article__heading">第5条（個人情報の第三者提供）</h2>
+        <p class="privacy-article__body">
+          当社は，次に掲げる場合を除いて，あらかじめユーザーの同意を得ることなく，第三者に個人情報を提供することはありません。ただし，個人情報保護法その他の法令で認められる場合を除きます。
+        </p>
+        <ul class="privacy-article__list">
+          <li>人の生命，身体または財産の保護のために必要がある場合であって，本人の同意を得ることが困難であるとき</li>
+          <li>公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合であって，本人の同意を得ることが困難であるとき</li>
+          <li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合であって，本人の同意を得ることにより当該事務の遂行に支障を及ぼすおそれがあるとき</li>
+        </ul>
+      </article>
+
+      <article class="privacy-article">
+        <h2 class="privacy-article__heading">第6条（個人情報の開示）</h2>
+        <p class="privacy-article__body">
+          当社は，本人から個人情報の開示を求められたときは，本人に対し，遅滞なくこれを開示します。ただし，開示することにより次のいずれかに該当する場合は，その全部または一部を開示しないこともあり，開示しない決定をした場合には，その旨を遅滞なく通知します。
+        </p>
+        <ul class="privacy-article__list">
+          <li>本人または第三者の生命，身体，財産その他の権利利益を害するおそれがある場合</li>
+          <li>当社の業務の適正な実施に著しい支障を及ぼすおそれがある場合</li>
+          <li>その他法令に違反することとなる場合</li>
+        </ul>
+      </article>
+
+      <article class="privacy-article">
+        <h2 class="privacy-article__heading">第7条（個人情報の訂正および削除）</h2>
+        <p class="privacy-article__body">
+          ユーザーは，当社の保有する自己の個人情報が誤った情報である場合には，当社が定める手続きにより，当社に対して個人情報の訂正，追加または削除（以下，「訂正等」といいます。）を請求することができます。当社は，ユーザーから請求を受けてその請求に応じる必要があると判断した場合には，遅滞なく，当該個人情報の訂正等を行うものとします。
+        </p>
+      </article>
+
+      <article class="privacy-article">
+        <h2 class="privacy-article__heading">第8条（個人情報の利用停止等）</h2>
+        <p class="privacy-article__body">
+          当社は，本人から，個人情報が，利用目的の範囲を超えて取り扱われているという理由，または不正の手段により取得されたものであるという理由により，その利用の停止または消去（以下，「利用停止等」といいます。）を求められた場合には，遅滞なく必要な調査を行い，その結果に基づき，個人情報の利用停止等を行い，その旨本人に通知します。
+        </p>
+      </article>
+
+      <article class="privacy-article">
+        <h2 class="privacy-article__heading">第9条（プライバシーポリシーの変更）</h2>
+        <p class="privacy-article__body">
+          本ポリシーの内容は，法令その他本ポリシーに別段の定めのある事項を除いて，ユーザーに通知することなく，変更することができるものとします。当社が別途定める場合を除いて，変更後のプライバシーポリシーは，本ウェブサイトに掲載したときから効力を生じるものとします。
+        </p>
+      </article>
+
+      <article class="privacy-article">
+        <h2 class="privacy-article__heading">第10条（お問い合わせ窓口）</h2>
+        <p class="privacy-article__body">本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。</p>
+        <div class="privacy-contact-box">
+          <p class="privacy-contact-box__row">社名：ダテ薬局DX</p>
+          <p class="privacy-contact-box__row">お問い合わせ先：<a href="index.html#contact-form">お問い合わせフォーム</a></p>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p class="site-footer__links">
+      <a href="company.html">会社概要</a> / <a href="terms.html">利用規約</a> / <a href="privacy.html">プライバシーポリシー</a>
+    </p>
+    <p class="site-footer__copyright">© ダテ薬局 All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>

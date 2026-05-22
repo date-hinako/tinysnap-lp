@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ページ一覧 — Tiny Snap モック確認用</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --brand: #00A37E;
+      --brand-light: #E6F6F2;
+      --brand-mid: #47BDA1;
+      --gray-900: #0F172A;
+      --gray-700: #334155;
+      --gray-500: #64748B;
+      --gray-400: #94A3B8;
+      --gray-200: #E2E8F0;
+      --gray-100: #F1F5F9;
+      --white: #FFFFFF;
+      --font-jp: "Noto Sans JP", sans-serif;
+      --font-en: "Jost", sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-jp);
+      background: #F8FAFC;
+      color: var(--gray-900);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Top bar ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--gray-900);
+      padding: 0 32px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .topbar__left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topbar__logo {
+      font-family: var(--font-en);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .topbar__sep {
+      width: 1px;
+      height: 16px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .topbar__label {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .topbar__badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* ── Layout ── */
+    .wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      margin-bottom: 48px;
+    }
+
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 12px;
+    }
+
+    .hero__eyebrow::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--brand);
+      display: inline-block;
+    }
+
+    .hero__title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin: 0 0 10px;
+      line-height: 1.3;
+    }
+
+    .hero__desc {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* ── Stats bar ── */
+    .stats {
+      display: flex;
+      gap: 24px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+
+    .stat__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .stat__dot--done   { background: var(--brand); }
+    .stat__dot--review { background: #F59E0B; }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section__header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .section__icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .section__icon--lp      { background: #DBEAFE; color: #2563EB; }
+    .section__icon--sub     { background: var(--brand-light); color: var(--brand); }
+    .section__icon--flow    { background: #FEF3C7; color: #D97706; }
+
+    .section__title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--gray-700);
+      margin: 0;
+    }
+
+    .section__count {
+      font-size: 12px;
+      color: var(--gray-400);
+      font-weight: 500;
+    }
+
+    /* ── Page grid ── */
+    .page-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    /* ── Page card ── */
+    .page-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+      border-color: var(--brand-mid);
+    }
+
+    /* Thumbnail */
+    .page-card__thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .page-card__thumb-inner {
+      transform: scale(0.18);
+      transform-origin: top center;
+      width: 1280px;
+      height: 800px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      translate: -50% 0;
+      pointer-events: none;
+    }
+
+    .page-card__thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none;
+    }
+
+    .page-card__thumb-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+
+    /* Step badge (for flow pages) */
+    .page-card__step {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 3;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      background: rgba(0,0,0,0.55);
+      color: var(--white);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Body */
+    .page-card__body {
+      padding: 16px 18px 14px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-card__name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin: 0 0 4px;
+    }
+
+    .page-card__file {
+      font-size: 11px;
+      color: var(--gray-400);
+      font-family: monospace;
+      margin: 0 0 10px;
+    }
+
+    .page-card__desc {
+      font-size: 12px;
+      color: var(--gray-500);
+      line-height: 1.6;
+      margin: 0;
+      flex: 1;
+    }
+
+    /* Footer */
+    .page-card__footer {
+      padding: 10px 18px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .page-card__status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+    }
+
+    .page-card__status--done {
+      background: var(--brand-light);
+      color: var(--brand);
+    }
+
+    .page-card__status--done::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--brand);
+    }
+
+    .page-card__open {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--brand);
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: var(--brand-light);
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .page-card:hover .page-card__open {
+      background: var(--brand);
+      color: var(--white);
+    }
+
+    /* ── Flow list (申込みフローは縦並びで連番) ── */
+    .flow-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+
+    .flow-list::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 40px;
+      bottom: 40px;
+      width: 2px;
+      background: var(--gray-200);
+      z-index: 0;
+    }
+
+    .flow-item {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 20px;
+      transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .flow-item:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transform: translateX(3px);
+      border-color: var(--brand-mid);
+    }
+
+    .flow-item__num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--brand-light);
+      border: 2px solid var(--brand-mid);
+      color: var(--brand);
+      font-family: var(--font-en);
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flow-item__info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .flow-item__name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin: 0 0 2px;
+    }
+
+    .flow-item__file {
+      font-size: 11px;
+      color: var(--gray-400);
+      font-family: monospace;
+      margin: 0;
+    }
+
+    .flow-item__desc {
+      font-size: 12px;
+      color: var(--gray-500);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .flow-item__open {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--brand);
+      padding: 7px 14px;
+      border-radius: 20px;
+      background: var(--brand-light);
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .flow-item:hover .flow-item__open {
+      background: var(--brand);
+      color: var(--white);
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--gray-200);
+      margin: 40px 0;
+    }
+
+    /* ── Footer ── */
+    .foot {
+      text-align: center;
+      font-size: 12px;
+      color: var(--gray-400);
+      padding-top: 32px;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    /* ── SP ── */
+    @media (max-width: 600px) {
+      .topbar { padding: 0 16px; }
+      .wrapper { padding: 32px 16px 60px; }
+      .hero__title { font-size: 22px; }
+      .page-grid { grid-template-columns: 1fr; }
+      .flow-item { flex-wrap: wrap; }
+      .flow-item__open { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar__left">
+      <span class="topbar__logo">Tiny Snap</span>
+      <div class="topbar__sep"></div>
+      <span class="topbar__label">ページ一覧</span>
+    </div>
+    <span class="topbar__badge">内部確認用 — 非公開</span>
+  </div>
+
+  <div class="wrapper">
+
+    <!-- Hero -->
+    <div class="hero">
+      <p class="hero__eyebrow">Mockup Index</p>
+      <h1 class="hero__title">Tiny Snap — 実装ページ一覧</h1>
+      <p class="hero__desc">
+        こちらは制作中のモックアップ確認用ページです。各ページのリンクから画面をご確認いただけます。<br>
+        内容・デザインについてお気づきの点があれば、担当者までご共有ください。
+      </p>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat__dot stat__dot--done"></span>
+          実装済み 10ページ
+        </div>
+      </div>
+    </div>
+
+    <!-- ① LP / サービスTOP -->
+    <div class="section">
+      <div class="section__header">
+        <div class="section__icon section__icon--lp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h2 class="section__title">LP / サービスTOP</h2>
+        <span class="section__count">1ページ</span>
+      </div>
+      <div class="page-grid">
+
+        <div class="page-card">
+          <a class="page-card__thumb" href="index.html" target="_blank" tabindex="-1" aria-hidden="true">
+            <div class="page-card__thumb-inner">
+              <iframe src="index.html" loading="lazy" title="index preview" scrolling="no" tabindex="-1"></iframe>
+            </div>
+            <div class="page-card__thumb-overlay"></div>
+          </a>
+          <div class="page-card__body">
+            <p class="page-card__name">サービスTOP（LP）</p>
+            <p class="page-card__file">index.html</p>
+            <p class="page-card__desc">ヒーロー・課題提示・特徴・料金プラン・導入フロー・お問い合わせフォームを含むメインLP。</p>
+          </div>
+          <div class="page-card__footer">
+            <span class="page-card__status page-card__status--done">実装済み</span>
+            <a href="index.html" target="_blank" class="page-card__open">
+              開く
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ② サブページ -->
+    <div class="section">
+      <div class="section__header">
+        <div class="section__icon section__icon--sub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h2 class="section__title">サブページ</h2>
+        <span class="section__count">3ページ</span>
+      </div>
+      <div class="page-grid">
+
+        <div class="page-card">
+          <a class="page-card__thumb" href="company.html" target="_blank" tabindex="-1" aria-hidden="true">
+            <div class="page-card__thumb-inner">
+              <iframe src="company.html" loading="lazy" title="company preview" scrolling="no" tabindex="-1"></iframe>
+            </div>
+            <div class="page-card__thumb-overlay"></div>
+          </a>
+          <div class="page-card__body">
+            <p class="page-card__name">会社概要</p>
+            <p class="page-card__file">company.html</p>
+            <p class="page-card__desc">ダテ薬局DXについての説明・特徴リスト・運営会社情報・プライバシーポリシー・お問い合わせCTA。</p>
+          </div>
+          <div class="page-card__footer">
+            <span class="page-card__status page-card__status--done">実装済み</span>
+            <a href="company.html" target="_blank" class="page-card__open">
+              開く
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="page-card">
+          <a class="page-card__thumb" href="terms.html" target="_blank" tabindex="-1" aria-hidden="true">
+            <div class="page-card__thumb-inner">
+              <iframe src="terms.html" loading="lazy" title="terms preview" scrolling="no" tabindex="-1"></iframe>
+            </div>
+            <div class="page-card__thumb-overlay"></div>
+          </a>
+          <div class="page-card__body">
+            <p class="page-card__name">利用規約</p>
+            <p class="page-card__file">terms.html</p>
+            <p class="page-card__desc">全12条の利用規約。条文ごとにグリーン左ボーダーの見出し、箇条書きリスト付き。</p>
+          </div>
+          <div class="page-card__footer">
+            <span class="page-card__status page-card__status--done">実装済み</span>
+            <a href="terms.html" target="_blank" class="page-card__open">
+              開く
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="page-card">
+          <a class="page-card__thumb" href="privacy.html" target="_blank" tabindex="-1" aria-hidden="true">
+            <div class="page-card__thumb-inner">
+              <iframe src="privacy.html" loading="lazy" title="privacy preview" scrolling="no" tabindex="-1"></iframe>
+            </div>
+            <div class="page-card__thumb-overlay"></div>
+          </a>
+          <div class="page-card__body">
+            <p class="page-card__name">プライバシーポリシー</p>
+            <p class="page-card__file">privacy.html</p>
+            <p class="page-card__desc">全10条のプライバシーポリシー。第10条にお問い合わせ窓口ボックスを配置。</p>
+          </div>
+          <div class="page-card__footer">
+            <span class="page-card__status page-card__status--done">実装済み</span>
+            <a href="privacy.html" target="_blank" class="page-card__open">
+              開く
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ③ お申込みフロー -->
+    <div class="section">
+      <div class="section__header">
+        <div class="section__icon section__icon--flow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <h2 class="section__title">お申込みフロー</h2>
+        <span class="section__count">6ステップ</span>
+      </div>
+
+      <div class="flow-list">
+
+        <div class="flow-item">
+          <div class="flow-item__num">1</div>
+          <div class="flow-item__info">
+            <p class="flow-item__name">お客様情報の入力</p>
+            <p class="flow-item__file">register.html</p>
+            <p class="flow-item__desc">会社名・住所・担当者名・メール・パスワードを入力。郵便番号から住所を自動補完。</p>
+          </div>
+          <a href="register.html" target="_blank" class="flow-item__open">
+            開く
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-item__num">2</div>
+          <div class="flow-item__info">
+            <p class="flow-item__name">メール確認</p>
+            <p class="flow-item__file">register-sent.html</p>
+            <p class="flow-item__desc">確認メール送信済みの案内画面。迷惑メール確認の注意書き・トップへ戻るリンク。</p>
+          </div>
+          <a href="register-sent.html" target="_blank" class="flow-item__open">
+            開く
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-item__num">3</div>
+          <div class="flow-item__info">
+            <p class="flow-item__name">サービス選択</p>
+            <p class="flow-item__file">register-plan.html</p>
+            <p class="flow-item__desc">FAQ・LINE WORKS AIボット・電子帳票保存の3カテゴリからプランを選択。月払い/年払いトグル・リアルタイム合計表示。</p>
+          </div>
+          <a href="register-plan.html" target="_blank" class="flow-item__open">
+            開く
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-item__num">4</div>
+          <div class="flow-item__info">
+            <p class="flow-item__name">決済情報の入力</p>
+            <p class="flow-item__file">register-payment.html</p>
+            <p class="flow-item__desc">カード番号・名義・有効期限・CVC入力。ビジュアルカードプレビューがリアルタイム更新。カード種別（Visa/MC/Amex/JCB）を自動判別。</p>
+          </div>
+          <a href="register-payment.html" target="_blank" class="flow-item__open">
+            開く
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-item__num">5</div>
+          <div class="flow-item__info">
+            <p class="flow-item__name">申込み内容の確認</p>
+            <p class="flow-item__file">register-confirm.html</p>
+            <p class="flow-item__desc">お客様情報・選択サービス・支払いカードを一覧で最終確認。Stripe移行の説明文をボタン直上に配置。各セクションに「修正」リンク。</p>
+          </div>
+          <a href="register-confirm.html" target="_blank" class="flow-item__open">
+            開く
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-item__num">6</div>
+          <div class="flow-item__info">
+            <p class="flow-item__name">お申込み完了</p>
+            <p class="flow-item__file">register-complete.html</p>
+            <p class="flow-item__desc">グリーングラデーションバナー＋アニメーション付きチェックマークで完了を演出。登録情報サマリー・今後の流れ・ダッシュボードCTA。</p>
+          </div>
+          <a href="register-complete.html" target="_blank" class="flow-item__open">
+            開く
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <p class="foot">Tiny Snap — 内部確認用ページ一覧 &nbsp;·&nbsp; 外部公開禁止</p>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>確認メール送信済み | Tiny Snap</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* =========================================================
+       Register — sent page
+       ========================================================= */
+
+    .register-page {
+      min-height: calc(100vh - var(--header-height));
+      background: var(--color-gray-100, #F1F5F9);
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Step indicator (shared with register.html) ── */
+    .step-nav {
+      max-width: 680px;
+      margin: 0 auto 40px;
+    }
+
+    .step-nav__list {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .step-nav__item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .step-nav__item::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: var(--color-border-light, #E2E8F0);
+    }
+
+    .step-nav__item:last-child::after { display: none; }
+
+    .step-nav__btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-nav__circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--color-border-light, #E2E8F0);
+      background: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-gray-400, #94A3B8);
+      transition: all 0.2s;
+    }
+
+    .step-nav__label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--color-gray-400, #94A3B8);
+      white-space: nowrap;
+    }
+
+    /* Active */
+    .step-nav__item--active .step-nav__circle {
+      background: var(--color-brand-500);
+      border-color: var(--color-brand-500);
+      color: var(--color-white);
+    }
+    .step-nav__item--active .step-nav__label {
+      color: var(--color-brand-500);
+      font-weight: 700;
+    }
+
+    /* Done — checkmark */
+    .step-nav__item--done .step-nav__circle {
+      background: var(--color-brand-500);
+      border-color: var(--color-brand-500);
+      color: var(--color-white);
+    }
+    .step-nav__item--done .step-nav__label {
+      color: var(--color-brand-500);
+    }
+    .step-nav__item--done::after {
+      background: var(--color-brand-300, #47BDA1);
+    }
+
+    /* ── Sent card ── */
+    .sent-card {
+      max-width: 520px;
+      margin: 0 auto;
+      background: var(--color-white);
+      border-radius: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+      padding: 56px 48px 48px;
+      text-align: center;
+    }
+
+    /* Icon circle */
+    .sent-card__icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--color-brand-50, #E6F6F2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+
+    .sent-card__icon svg {
+      color: var(--color-brand-500);
+    }
+
+    /* Heading */
+    .sent-card__heading {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--color-gray-900);
+      margin: 0 0 12px;
+    }
+
+    /* Lead text */
+    .sent-card__lead {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--color-gray-600, #475569);
+      margin: 0 0 32px;
+    }
+
+    .sent-card__lead strong {
+      color: var(--color-brand-500);
+      font-weight: 700;
+    }
+
+    /* Divider */
+    .sent-card__divider {
+      border: none;
+      border-top: 1px solid var(--color-border-light, #E2E8F0);
+      margin: 0 0 24px;
+    }
+
+    /* Note */
+    .sent-card__note {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--color-gray-400, #94A3B8);
+      margin: 0 0 32px;
+    }
+
+    .sent-card__note a {
+      color: var(--color-brand-500);
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    /* Back button */
+    .sent-card__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 32px;
+      border: 1.5px solid var(--color-border-light, #E2E8F0);
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-gray-700, #334155);
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+
+    .sent-card__back:hover {
+      border-color: var(--color-brand-300, #47BDA1);
+      color: var(--color-brand-500);
+      background: var(--color-brand-50, #E6F6F2);
+    }
+
+    /* =========================================================
+       SP overrides
+       ========================================================= */
+    @media (max-width: 768px) {
+      .register-page {
+        padding: 28px 16px 60px;
+      }
+
+      .step-nav {
+        margin-bottom: 28px;
+      }
+
+      .step-nav__circle {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+      }
+
+      .step-nav__label {
+        font-size: 10px;
+      }
+
+      .sent-card {
+        padding: 40px 24px 36px;
+      }
+
+      .sent-card__heading {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .step-nav__label { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__logo" aria-label="Tiny Snap ホーム">Tiny Snap</a>
+
+      <nav class="site-header__nav" aria-label="グローバルナビゲーション">
+        <ul class="site-header__nav-list">
+          <li class="site-header__nav-item">
+            <a href="index.html">TOP</a>
+          </li>
+          <li class="site-header__nav-item">
+            <a href="company.html">会社概要</a>
+          </li>
+        </ul>
+        <div class="site-header__actions">
+          <a href="register.html" class="site-header__cta">お申込み</a>
+          <a href="#login" class="site-header__login">ログイン</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="register-page">
+
+    <!-- Step indicator -->
+    <nav class="step-nav" aria-label="申込みステップ">
+      <ol class="step-nav__list">
+        <li class="step-nav__item step-nav__item--done">
+          <div class="step-nav__btn">
+            <span class="step-nav__circle">
+              <!-- checkmark -->
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2.5 7L5.5 10L11.5 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="step-nav__label">お客様情報</span>
+          </div>
+        </li>
+        <li class="step-nav__item step-nav__item--active">
+          <div class="step-nav__btn">
+            <span class="step-nav__circle" aria-current="step">2</span>
+            <span class="step-nav__label">メール確認</span>
+          </div>
+        </li>
+        <li class="step-nav__item">
+          <div class="step-nav__btn">
+            <span class="step-nav__circle">3</span>
+            <span class="step-nav__label">サービス選択</span>
+          </div>
+        </li>
+        <li class="step-nav__item">
+          <div class="step-nav__btn">
+            <span class="step-nav__circle">4</span>
+            <span class="step-nav__label">決済情報</span>
+          </div>
+        </li>
+        <li class="step-nav__item">
+          <div class="step-nav__btn">
+            <span class="step-nav__circle">5</span>
+            <span class="step-nav__label">完了</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Sent card -->
+    <div class="sent-card" role="main">
+      <div class="sent-card__icon" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </div>
+
+      <h1 class="sent-card__heading">確認メールを送信しました</h1>
+
+      <p class="sent-card__lead">
+        ご登録のメールアドレスに確認メールをお送りしました。<br>
+        メール内の<strong>認証リンク</strong>をクリックして、<br>アカウントを有効化してください。
+      </p>
+
+      <hr class="sent-card__divider">
+
+      <p class="sent-card__note">
+        メールが届かない場合は、迷惑メールフォルダをご確認ください。<br>
+        それでも届かない場合は<a href="index.html#contact-form">お問い合わせ</a>よりご連絡ください。
+      </p>
+
+      <a href="index.html" class="sent-card__back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        トップに戻る
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p class="site-footer__links">
+      <a href="company.html">会社概要</a> / <a href="terms.html">利用規約</a> / <a href="privacy.html">プライバシーポリシー</a>
+    </p>
+    <p class="site-footer__copyright">© ダテ薬局 All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>

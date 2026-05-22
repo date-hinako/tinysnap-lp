@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__b28b99da-baa7-44a4-9593-077ead815c93__get_design_context",
+      "Bash(python3 -c ' *)",
+      "Bash(sed -i '' 's/max-width: 1032px/max-width: 1052px/g' /Users/hinako_date/Desktop/副業/ダテ薬局/tiny-snap-lp/css/style.css)",
+      "Bash(sed -i '' 's/max-width: 1096px/max-width: 1052px/g' /Users/hinako_date/Desktop/副業/ダテ薬局/tiny-snap-lp/css/style.css)",
+      "Bash(sed -i '' 's/--container-width: 1100px/--container-width: 1200px/' /Users/hinako_date/Desktop/副業/ダテ薬局/tiny-snap-lp/css/style.css)",
+      "Bash(sed -i '' 's/max-width: 1052px/max-width: 1152px/g' /Users/hinako_date/Desktop/副業/ダテ薬局/tiny-snap-lp/css/style.css)",
+      "mcp__b28b99da-baa7-44a4-9593-077ead815c93__whoami",
+      "mcp__b28b99da-baa7-44a4-9593-077ead815c93__create_new_file",
+      "mcp__b28b99da-baa7-44a4-9593-077ead815c93__use_figma",
+      "mcp__b28b99da-baa7-44a4-9593-077ead815c93__get_screenshot",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(git --version)",
+      "Bash(git init *)",
+      "Bash(git checkout *)",
+      "Bash(git add *)"
+    ]
+  }
+}

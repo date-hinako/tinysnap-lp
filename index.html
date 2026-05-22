@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiny Snap | 社内専用AIで業務の悩みを即解決。</title>
+  <meta name="description" content="社内ナレッジの検索をAIで驚くほど簡単に。LINE WORKSとのシームレスな連携に対応し、導入の手間を最小限に抑えながら、現場のDXを今日から加速させます。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Noto Sans JP for body, Jost as Futura alternative for the logo -->
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="#top" class="site-header__logo" aria-label="Tiny Snap ホーム">Tiny Snap</a>
+
+      <nav class="site-header__nav" aria-label="グローバルナビゲーション">
+        <ul class="site-header__nav-list">
+          <li class="site-header__nav-item is-current">
+            <a href="#top">TOP</a>
+          </li>
+          <li class="site-header__nav-item">
+            <a href="company.html">会社概要</a>
+          </li>
+        </ul>
+
+        <div class="site-header__actions">
+          <a href="register.html" class="site-header__cta">お申込み</a>
+          <a href="#login" class="site-header__login">ログイン</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ==========================================================
+         Hero (FV)
+         ========================================================== -->
+    <section class="hero" id="top" aria-labelledby="hero-heading">
+      <div class="hero__bg" aria-hidden="true"></div>
+
+      <img
+        class="hero__device"
+        src="images/hero-device.png"
+        alt="Tiny Snapの管理画面イメージ"
+        width="1287"
+        height="811"
+        loading="eager"
+        fetchpriority="high"
+      >
+
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <p class="hero__lead">「調べる時間」をゼロに</p>
+          <h1 class="hero__heading" id="hero-heading">
+            社内専用AIで業務の<br>悩みを即解決。
+          </h1>
+        </div>
+
+        <p class="hero__description">
+          社内ナレッジの検索をAIで驚くほど簡単に。<br>
+          LINE WORKSとのシームレスな連携に対応し、導入の手間を<br>
+          最小限に抑えながら、現場のDXを今日から加速させます。
+        </p>
+
+        <a href="#contact-form" class="hero__cta">
+          <span class="hero__cta-text">お問い合わせはこちら</span>
+          <svg class="hero__cta-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="14" cy="14" r="14" fill="#FFFFFF"/>
+            <path d="M12 9l5 5-5 5" stroke="#00A37E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         Issues — お悩み3カード
+         ========================================================== -->
+    <section class="issues" aria-labelledby="issues-heading">
+      <div class="issues__inner">
+        <div class="issues__head">
+          <p class="section-label"><span class="section-label__dot" aria-hidden="true"></span>Issues</p>
+          <h2 class="issues__heading" id="issues-heading">
+            社内のAI活用で、こんなお悩みありませんか？
+          </h2>
+        </div>
+
+        <ul class="issues__list">
+          <li class="issue-card">
+            <img class="issue-card__quote" src="images/icon-quote.svg" alt="" aria-hidden="true" width="36" height="28">
+            <div class="issue-card__body">
+              <div class="issue-card__text">
+                <p class="issue-card__case">CASE 01</p>
+                <p class="issue-card__title">新しいツールの導入<br>や管理が面倒</p>
+              </div>
+              <img class="issue-card__image" src="images/case01.png" alt="" width="110" height="182" loading="lazy">
+            </div>
+          </li>
+
+          <li class="issue-card">
+            <img class="issue-card__quote" src="images/icon-quote.svg" alt="" aria-hidden="true" width="36" height="28">
+            <div class="issue-card__body">
+              <div class="issue-card__text">
+                <p class="issue-card__case">CASE 02</p>
+                <p class="issue-card__title">情報漏洩のリスクがある</p>
+              </div>
+              <img class="issue-card__image" src="images/case02.png" alt="" width="112" height="180" loading="lazy">
+            </div>
+          </li>
+
+          <li class="issue-card">
+            <img class="issue-card__quote" src="images/icon-quote.svg" alt="" aria-hidden="true" width="36" height="28">
+            <div class="issue-card__body">
+              <div class="issue-card__text">
+                <p class="issue-card__case">CASE 03</p>
+                <p class="issue-card__title">多すぎるツールに<br>現場が疲弊している</p>
+              </div>
+              <img class="issue-card__image issue-card__image--wide" src="images/case03.png" alt="" width="163" height="164" loading="lazy">
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         Feature — 3つの特徴
+         ========================================================== -->
+    <section class="feature" aria-labelledby="feature-heading">
+      <div class="feature__inner">
+        <div class="feature__head">
+          <p class="section-label"><span class="section-label__dot" aria-hidden="true"></span>Feature</p>
+          <h2 class="feature__heading" id="feature-heading">
+            そのお悩み、Tiny Snapが解決します！
+          </h2>
+          <p class="feature__subheading">
+            LINE WORKS環境を、最強の「安全・高精度なナレッジ拠点」へ
+          </p>
+        </div>
+
+        <ul class="feature__list">
+          <!-- 01 — text left, image right -->
+          <li class="feature-card">
+            <span class="feature-card__num" aria-hidden="true">01</span>
+            <div class="feature-card__body">
+              <h3 class="feature-card__title">新規アプリ配布は不要</h3>
+              <p class="feature-card__text">
+                契約後、既存のデータを投入するだけで運用を開始できる「セルフセットアップ」が基本。社内のITリソースを圧迫しません。
+              </p>
+              <p class="feature-card__note">
+                ※専門スタッフによる設置・配線サポートも承ります（別途お見積り）
+              </p>
+            </div>
+            <div class="feature-card__media">
+              <img src="images/feature-01.png" alt="LINE WORKSのスマートフォン画面イメージ" loading="lazy">
+            </div>
+          </li>
+
+          <!-- 02 — image left, text right -->
+          <li class="feature-card feature-card--reverse">
+            <span class="feature-card__num" aria-hidden="true">02</span>
+            <div class="feature-card__media">
+              <img src="images/feature-02.png" alt="セキュアな環境で動作するAIのイメージ" loading="lazy">
+            </div>
+            <div class="feature-card__body">
+              <h3 class="feature-card__title">安全な職場専用AI</h3>
+              <p class="feature-card__text">
+                会社が管理するセキュアな環境下でAIを利用。不特定多数の個人サービス利用による情報漏洩を防ぎ、組織のガバナンスを強化します。
+              </p>
+            </div>
+          </li>
+
+          <!-- 03 — text left, image right -->
+          <li class="feature-card">
+            <span class="feature-card__num" aria-hidden="true">03</span>
+            <div class="feature-card__body">
+              <h3 class="feature-card__title">教育コストゼロ</h3>
+              <p class="feature-card__text">
+                使い慣れたLINE WORKSをそのまま使うため、新しい操作を覚える必要がありません。導入初日から現場の誰もが使いこなせます。
+              </p>
+            </div>
+            <div class="feature-card__media">
+              <img src="images/feature-03.png" alt="LINE WORKSを使う女性スタッフのイラスト" loading="lazy">
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         Products — ご提供機能
+         ========================================================== -->
+    <section class="products" aria-labelledby="products-heading">
+      <div class="products__panel">
+        <div class="products__inner">
+          <div class="products__head">
+            <p class="section-label"><span class="section-label__dot" aria-hidden="true"></span>Products</p>
+            <h2 class="products__heading" id="products-heading">ご提供機能</h2>
+            <p class="products__subheading">
+              業務の手を止めない。知りたい情報に0秒でアクセスできる環境を
+            </p>
+          </div>
+
+          <div class="products__grid">
+            <div class="products__rows">
+              <ul class="products__row products__row--top">
+                <li class="product-card">
+                  <div class="product-card__icon" aria-hidden="true">
+                    <img src="images/icon-ai-bot.svg" alt="" width="37" height="37">
+                  </div>
+                  <div class="product-card__body">
+                    <h3 class="product-card__title">LINE WORKS AIボット</h3>
+                    <p class="product-card__text">
+                      LINEWORKS 上でチャットボットとして動作する追加サービスです。質問応答はもちろん、アイデア提案や文書の校正など業務を支援する用途に使えます。
+                    </p>
+                  </div>
+                  <div class="product-feature">
+                    <div class="product-feature__header">
+                      <img src="images/icon-park-solid_check-one.svg" class="product-feature__header-icon" alt="" width="24" height="24" aria-hidden="true">
+                      <span class="product-feature__label">主な機能</span>
+                    </div>
+                    <ul class="product-feature__list">
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>質問・疑問への即時応答（Q&amp;A）</span>
+                      </li>
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>アイデア提案・ブレインストーミング支援</span>
+                      </li>
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>文書の校正・推敲サポート</span>
+                      </li>
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>LINEWORKS と連携したチャット運用</span>
+                      </li>
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>応答ログの確認とカスタマイズ</span>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                <li class="product-card">
+                  <div class="product-card__icon" aria-hidden="true">
+                    <img src="images/icon-faq.svg" alt="" width="44" height="44">
+                  </div>
+                  <div class="product-card__body">
+                    <h3 class="product-card__title">社内用FAQ</h3>
+                    <p class="product-card__text">
+                      社内向けのFAQデータベースを構築・管理するサービスです。管理画面からFAQの追加・編集が可能で、社員の疑問を素早く解決します。
+                    </p>
+                  </div>
+                  <div class="product-feature">
+                    <div class="product-feature__header">
+                      <img src="images/icon-park-solid_check-one.svg" class="product-feature__header-icon" alt="" width="24" height="24" aria-hidden="true">
+                      <span class="product-feature__label">主な機能</span>
+                    </div>
+                    <ul class="product-feature__list">
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>FAQの追加・編集・カテゴリ管理</span>
+                      </li>
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>全文検索とタグ付け</span>
+                      </li>
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>CSV/JSON エクスポート・インポート</span>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                <li class="product-card">
+                  <div class="product-card__icon" aria-hidden="true">
+                    <img src="images/icon-document.svg" alt="" width="44" height="44">
+                  </div>
+                  <div class="product-card__body">
+                    <h3 class="product-card__title">電子帳票保管</h3>
+                    <p class="product-card__text">
+                      電子帳簿保存法に準拠した長期的なPDF保管サービスです。請求書や領収書などの証跡を安全に保存し、検索・ダウンロードが可能です。
+                    </p>
+                  </div>
+                  <div class="product-feature">
+                    <div class="product-feature__header">
+                      <img src="images/icon-park-solid_check-one.svg" class="product-feature__header-icon" alt="" width="24" height="24" aria-hidden="true">
+                      <span class="product-feature__label">主な機能</span>
+                    </div>
+                    <ul class="product-feature__list">
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>法令準拠の安全な長期保管</span>
+                      </li>
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>検索・ダウンロード機能</span>
+                      </li>
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>アクセスログと監査証跡の保持</span>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+
+              <ul class="products__row products__row--bottom">
+                <li class="product-card product-card--wide">
+                  <div class="product-card__body">
+                    <h3 class="product-card__title">社内FAQのLINE WORKSボットオプション</h3>
+                    <p class="product-card__text">
+                      LINEWORKS 上でチャットボットとして動作する追加サービスです。質問応答はもちろん、アイデア提案や文書の校正など業務を支援する用途に使えます。
+                    </p>
+                  </div>
+                  <div class="product-feature">
+                    <div class="product-feature__header">
+                      <img src="images/icon-park-solid_check-one.svg" class="product-feature__header-icon" alt="" width="24" height="24" aria-hidden="true">
+                      <span class="product-feature__label">主な機能</span>
+                    </div>
+                    <ul class="product-feature__list">
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>FAQデータの同期と自動応答</span>
+                      </li>
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>類似FAQの提示・キーワード検索</span>
+                      </li>
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>有人対応へのシームレスなエスカレーション</span>
+                      </li>
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>運用ログのダッシュボード表示</span>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                <li class="product-card product-card--wide">
+                  <div class="product-card__body">
+                    <h3 class="product-card__title">電子帳票保管PLUS</h3>
+                    <p class="product-card__text">
+                      「電子帳票保管」のオプションで、アップロードされた PDF の自動解析・仕訳を行う追加サービスです。会計業務の自動化を支援します。
+                    </p>
+                  </div>
+                  <div class="product-feature">
+                    <div class="product-feature__header">
+                      <img src="images/icon-park-solid_check-one.svg" class="product-feature__header-icon" alt="" width="24" height="24" aria-hidden="true">
+                      <span class="product-feature__label">主な機能</span>
+                    </div>
+                    <ul class="product-feature__list">
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>PDFからの自動データ抽出（OCR）</span>
+                      </li>
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>AIによる自動仕訳と会計データ出力</span>
+                      </li>
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>抽出結果の確認・修正インターフェース</span>
+                      </li>
+                      <li class="product-feature__item">
+                        <img src="images/mingcute_check-fill.svg" class="product-feature__check" alt="" width="16" height="16" aria-hidden="true">
+                        <span>既存の保管サービスに追加して利用可能</span>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <p class="products__note">※導入や運用についてはお問い合わせください。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         CTA — お問い合わせ / お申込み
+         ========================================================== -->
+    <section class="cta" id="contact" aria-labelledby="cta-heading">
+      <div class="cta__inner">
+        <div class="cta__copy">
+          <h2 class="cta__heading" id="cta-heading">
+            <svg class="cta__heading-icon" viewBox="0 0 34 27" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="1.5" y="1.5" width="31" height="24" rx="2" stroke="#FFFFFF" stroke-width="2"/>
+              <path d="M2 4 L17 16 L32 4" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <span>まずはお気軽に<br class="cta__heading-br">お問い合わせください</span>
+          </h2>
+          <p class="cta__lead">通常2〜3営業日以内にメール・電話で回答いたします。</p>
+        </div>
+
+        <div class="cta__actions">
+          <a href="#contact-form" class="cta-button cta-button--primary">
+            <span>お問い合わせはこちら</span>
+            <svg class="cta-button__icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="14" cy="14" r="14" fill="#FFFFFF"/>
+              <path d="M12 9l5 5-5 5" stroke="#00A37E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="register.html" class="cta-button cta-button--secondary">
+            <span>お申込みはこちら</span>
+            <svg class="cta-button__icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="14" cy="14" r="14" fill="#1E293B"/>
+              <path d="M12 9l5 5-5 5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         Pricing — 料金プラン
+         ========================================================== -->
+    <section class="pricing" aria-labelledby="pricing-heading">
+      <div class="pricing__inner">
+        <div class="pricing__head">
+          <p class="section-label"><span class="section-label__dot" aria-hidden="true"></span>Pricing</p>
+          <h2 class="pricing__heading" id="pricing-heading">料金プラン</h2>
+          <p class="pricing__subheading">ビジネスニーズに合わせて選べる3つのプラン</p>
+        </div>
+
+        <div class="pricing__grid">
+          <!-- 3 plan cards -->
+          <ul class="pricing__cards">
+            <li class="plan-card plan-card--popular">
+              <span class="plan-card__badge" aria-label="人気プラン">人気</span>
+              <div class="plan-card__head">
+                <h3 class="plan-card__title">LINE WORKS AIボット</h3>
+                <div class="plan-card__price">
+                  <span class="plan-card__price-amount">¥5,500</span>
+                  <span class="plan-card__price-tilde">〜</span>
+                </div>
+                <p class="plan-card__price-note">月額料金(税込)</p>
+              </div>
+              <div class="plan-card__body">
+                <p class="plan-card__features-label">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" stroke="#00A37E" stroke-width="2"/>
+                    <path d="M8 12.5l3 3 5-6" stroke="#00A37E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>主な提供内容</span>
+                </p>
+                <ul class="plan-card__features">
+                  <li>Gemini Grounding提供</li>
+                  <li>月2,000回〜10,000回まで</li>
+                  <li>試用版(1ヶ月無料)あり</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="plan-card">
+              <div class="plan-card__head">
+                <h3 class="plan-card__title">社内FAQ</h3>
+                <div class="plan-card__price">
+                  <span class="plan-card__price-amount">¥9,900</span>
+                  <span class="plan-card__price-tilde">〜</span>
+                </div>
+                <p class="plan-card__price-note">月額料金(税込)</p>
+              </div>
+              <div class="plan-card__body">
+                <p class="plan-card__features-label">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" stroke="#00A37E" stroke-width="2"/>
+                    <path d="M8 12.5l3 3 5-6" stroke="#00A37E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>主な提供内容</span>
+                </p>
+                <ul class="plan-card__features">
+                  <li>社内FAQシステム提供</li>
+                  <li>月2,000回〜10,000回まで</li>
+                  <li>LINE WORKS連携オプションあり</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="plan-card">
+              <div class="plan-card__head">
+                <h3 class="plan-card__title">電子帳簿保存(EBK)</h3>
+                <div class="plan-card__price">
+                  <span class="plan-card__price-amount">¥11,000</span>
+                  <span class="plan-card__price-tilde">〜</span>
+                </div>
+                <p class="plan-card__price-note">月額料金(税込)</p>
+              </div>
+              <div class="plan-card__body">
+                <p class="plan-card__features-label">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" stroke="#00A37E" stroke-width="2"/>
+                    <path d="M8 12.5l3 3 5-6" stroke="#00A37E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>主な提供内容</span>
+                </p>
+                <ul class="plan-card__features">
+                  <li>請求書等の電子保存</li>
+                  <li>AI OCR読み取りオプション</li>
+                  <li>電帳法保存法対応</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Help / consultation card -->
+          <div class="pricing__help">
+            <div class="pricing__help-copy">
+              <h3 class="pricing__help-heading">プラン選びにお悩みですか？</h3>
+              <p class="pricing__help-text">専門のスタッフがお客様の環境に最適なプランをご提案します。</p>
+            </div>
+            <a href="#contact-form" class="pricing__help-button">
+              <span>お問い合わせはこちら</span>
+              <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="14" cy="14" r="14" fill="#FFFFFF"/>
+                <path d="M12 9l5 5-5 5" stroke="#00A37E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         Flow — 導入の流れ
+         ========================================================== -->
+    <section class="flow" aria-labelledby="flow-heading">
+      <div class="flow__inner">
+        <div class="flow__head">
+          <p class="section-label"><span class="section-label__dot" aria-hidden="true"></span>Flow</p>
+          <h2 class="flow__heading" id="flow-heading">導入の流れ</h2>
+          <p class="flow__subheading">導入はスムーズ。専門知識は不要です</p>
+        </div>
+
+        <ol class="flow__steps">
+          <li class="flow-step flow-step--first">
+            <div class="flow-step__top">
+              <p class="flow-step__num">STEP 01</p>
+              <span class="flow-step__divider" aria-hidden="true"></span>
+              <h3 class="flow-step__title">お問い合わせ</h3>
+            </div>
+            <div class="flow-step__bottom">
+              <p class="flow-step__text">まずはお気軽に<br>お問い合わせください。</p>
+              <a class="flow-step__link" href="#contact-form">
+                <span>お問い合わせはこちら</span>
+                <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="7" cy="7" r="7" fill="#00A37E"/>
+                  <path d="M6 4l3 3-3 3" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </li>
+
+          <li class="flow-step flow-step--02">
+            <div class="flow-step__top">
+              <p class="flow-step__num">STEP 02</p>
+              <span class="flow-step__divider" aria-hidden="true"></span>
+              <h3 class="flow-step__title">ヒアリング</h3>
+            </div>
+            <p class="flow-step__text">担当者が要件をお伺いし、最適な導入プランを提案します。</p>
+          </li>
+
+          <li class="flow-step flow-step--03">
+            <div class="flow-step__top">
+              <p class="flow-step__num">STEP 03</p>
+              <span class="flow-step__divider" aria-hidden="true"></span>
+              <h3 class="flow-step__title">データ連携</h3>
+            </div>
+            <p class="flow-step__text">既存FAQ取り込みやLINEWORKS連携の動作確認を行い、効果を検証します。</p>
+          </li>
+
+          <li class="flow-step flow-step--04">
+            <div class="flow-step__top">
+              <p class="flow-step__num">STEP 04</p>
+              <span class="flow-step__divider" aria-hidden="true"></span>
+              <h3 class="flow-step__title">本番導入</h3>
+            </div>
+            <p class="flow-step__text">設定、初期チューニングを実施し、運用開始に向けた最終調整を行います。</p>
+          </li>
+
+          <li class="flow-step flow-step--05">
+            <div class="flow-step__top">
+              <p class="flow-step__num">STEP 05</p>
+              <span class="flow-step__divider" aria-hidden="true"></span>
+              <h3 class="flow-step__title">運用支援・改善</h3>
+            </div>
+            <p class="flow-step__text">ログ分析と継続的なチューニングで効果を最大化します。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         CTA #2 — 同じパターンを Flow の後にもう一度
+         ========================================================== -->
+    <section class="cta" aria-labelledby="cta2-heading">
+      <div class="cta__inner">
+        <div class="cta__copy">
+          <h2 class="cta__heading" id="cta2-heading">
+            <svg class="cta__heading-icon" viewBox="0 0 34 27" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="1.5" y="1.5" width="31" height="24" rx="2" stroke="#FFFFFF" stroke-width="2"/>
+              <path d="M2 4 L17 16 L32 4" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <span>まずはお気軽に<br class="cta__heading-br">お問い合わせください</span>
+          </h2>
+          <p class="cta__lead">通常2〜3営業日以内にメール・電話で回答いたします。</p>
+        </div>
+
+        <div class="cta__actions">
+          <a href="#contact-form" class="cta-button cta-button--primary">
+            <span>お問い合わせはこちら</span>
+            <svg class="cta-button__icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="14" cy="14" r="14" fill="#FFFFFF"/>
+              <path d="M12 9l5 5-5 5" stroke="#00A37E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="register.html" class="cta-button cta-button--secondary">
+            <span>お申込みはこちら</span>
+            <svg class="cta-button__icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="14" cy="14" r="14" fill="#1E293B"/>
+              <path d="M12 9l5 5-5 5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         FAQ — よくあるご質問
+         ========================================================== -->
+    <section class="faq" id="faq" aria-labelledby="faq-heading">
+      <div class="faq__inner">
+        <div class="faq__head">
+          <p class="section-label"><span class="section-label__dot" aria-hidden="true"></span>FAQ</p>
+          <h2 class="faq__heading" id="faq-heading">よくあるご質問</h2>
+        </div>
+
+        <ul class="faq__list">
+          <li class="faq-item">
+            <details>
+              <summary>
+                <span class="faq-item__q" aria-hidden="true">Q</span>
+                <span class="faq-item__question">テレワークでも問題なく使えますか？</span>
+                <span class="faq-item__toggle" aria-hidden="true">
+                  <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.5 4.5l3.5 3.5 3.5-3.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <div class="faq-item__answer">
+                <p>はい、社外のあらゆるネットワーク環境からアクセスでき、テレワーク環境でも問題なくご利用いただけます。</p>
+              </div>
+            </details>
+          </li>
+
+          <li class="faq-item">
+            <details>
+              <summary>
+                <span class="faq-item__q" aria-hidden="true">Q</span>
+                <span class="faq-item__question">無料トライアルはありますか？</span>
+                <span class="faq-item__toggle" aria-hidden="true">
+                  <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.5 4.5l3.5 3.5 3.5-3.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <div class="faq-item__answer">
+                <p>お打ち合わせを実施させていただいたお客様に対して、2週間のトライアル期間をご用意しています。トライアル中の機能制限はなく、TinySnapのすべての機能をご利用いただけます。</p>
+              </div>
+            </details>
+          </li>
+
+          <li class="faq-item">
+            <details>
+              <summary>
+                <span class="faq-item__q" aria-hidden="true">Q</span>
+                <span class="faq-item__question">デスクトップの操作はできますか？</span>
+                <span class="faq-item__toggle" aria-hidden="true">
+                  <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.5 4.5l3.5 3.5 3.5-3.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <div class="faq-item__answer">
+                <p>はい、デスクトップ・モバイルいずれの環境でもご利用いただけます。</p>
+              </div>
+            </details>
+          </li>
+        </ul>
+
+        <a href="#" class="faq__more">
+          <span>もっと見る</span>
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="14" cy="14" r="14" fill="#FFFFFF"/>
+            <path d="M12 9l5 5-5 5" stroke="#00A37E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         Contact — お問い合わせフォーム
+         ========================================================== -->
+    <section class="contact" id="contact-form" aria-labelledby="contact-heading">
+      <div class="contact__inner">
+        <div class="contact__copy">
+          <p class="section-label section-label--brand">
+            <span class="section-label__dot" aria-hidden="true"></span>Contact
+          </p>
+          <h2 class="contact__heading" id="contact-heading">お問い合わせはこちら</h2>
+          <p class="contact__lead">
+            サービスについてのご質問などお気軽にお問い合わせください。<br>
+            通常2〜3営業日以内にメール・電話で回答いたします。
+          </p>
+
+          <img
+            class="contact__illustration"
+            src="images/contact-illustration.png"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+          >
+        </div>
+
+        <form class="contact-form" novalidate>
+          <div class="contact-form__fields">
+            <div class="form-field">
+              <label class="form-field__label" for="contact-company">
+                <span>会社名</span>
+                <span class="form-field__badge form-field__badge--required">必須</span>
+              </label>
+              <input
+                class="form-field__input"
+                type="text"
+                id="contact-company"
+                name="company"
+                placeholder="例)株式会社TinySnap"
+                required
+              >
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="contact-name">
+                <span>氏名</span>
+                <span class="form-field__badge form-field__badge--required">必須</span>
+              </label>
+              <input
+                class="form-field__input"
+                type="text"
+                id="contact-name"
+                name="name"
+                placeholder="例)山田 太郎"
+                required
+              >
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="contact-email">
+                <span>メールアドレス</span>
+                <span class="form-field__badge form-field__badge--required">必須</span>
+              </label>
+              <input
+                class="form-field__input"
+                type="email"
+                id="contact-email"
+                name="email"
+                placeholder="例) address@example.com"
+                required
+              >
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="contact-tel">
+                <span>電話番号</span>
+                <span class="form-field__badge form-field__badge--optional">任意</span>
+              </label>
+              <input
+                class="form-field__input"
+                type="tel"
+                id="contact-tel"
+                name="tel"
+                placeholder="例) 09012345678"
+              >
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="contact-message">
+                <span>お問い合わせ内容</span>
+                <span class="form-field__badge form-field__badge--required">必須</span>
+              </label>
+              <textarea
+                class="form-field__input form-field__input--textarea"
+                id="contact-message"
+                name="message"
+                rows="6"
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="contact-form__footer">
+            <p class="contact-form__consent">
+              ※<a href="privacy.html">個人情報の取り扱い</a>に同意の上、送信してください。
+            </p>
+            <button class="contact-form__submit" type="submit">
+              <span>送信する</span>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="12" cy="12" r="12" fill="#FFFFFF"/>
+                <path d="M10 8l4 4-4 4" stroke="#00A37E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ==========================================================
+       Footer
+       ========================================================== -->
+  <footer class="site-footer">
+    <p class="site-footer__links">
+      <a href="company.html">会社概要</a> / <a href="terms.html">利用規約</a> / <a href="privacy.html">プライバシーポリシー</a>
+    </p>
+    <p class="site-footer__copyright">© ダテ薬局 All Rights Reserved</p>
+  </footer>
+
+  <script>
+    /* ── お問い合わせフォーム グロウ ── */
+    (function () {
+      var form = document.querySelector('.contact-form');
+      if (!form) return;
+
+      function triggerGlow() {
+        form.classList.remove('is-glowing');
+        void form.offsetHeight; // アニメーションリセット
+        form.classList.add('is-glowing');
+        form.addEventListener('animationend', function () {
+          form.classList.remove('is-glowing');
+        }, { once: true });
+      }
+
+      // #contact-form へのリンクをクリックしたらスクロール完了後にグロウ
+      document.querySelectorAll('a[href="#contact-form"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          setTimeout(triggerGlow, 700); // smooth scroll の完了を待つ
+        });
+      });
+
+      // ページ読み込み時にハッシュが #contact-form なら即グロウ
+      if (window.location.hash === '#contact-form') {
+        setTimeout(triggerGlow, 400);
+      }
+    })();
+
+    /* ── FAQ アコーディオン ── */
+    (function () {
+      document.querySelectorAll('.faq-item details').forEach(function (details) {
+        var summary = details.querySelector('summary');
+        var answer  = details.querySelector('.faq-item__answer');
+        var busy    = false;
+
+        summary.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (busy) return;
+          busy = true;
+
+          if (details.open) {
+            /* ── 閉じる: 1fr → 0fr ── */
+            answer.style.gridTemplateRows = '1fr';
+            answer.offsetHeight;                    // 強制リフロー（from値を確定）
+            answer.style.gridTemplateRows = '0fr';
+            answer.addEventListener('transitionend', function onClose(evt) {
+              if (evt.propertyName !== 'grid-template-rows') return;
+              answer.removeEventListener('transitionend', onClose);
+              details.removeAttribute('open');
+              answer.style.gridTemplateRows = '';
+              busy = false;
+            });
+          } else {
+            /* ── 開く: 0fr → 1fr ── */
+            details.setAttribute('open', '');
+            answer.style.gridTemplateRows = '0fr';
+            answer.offsetHeight;                    // 強制リフロー（from値を確定）
+            answer.style.gridTemplateRows = '1fr';
+            answer.addEventListener('transitionend', function onOpen(evt) {
+              if (evt.propertyName !== 'grid-template-rows') return;
+              answer.removeEventListener('transitionend', onOpen);
+              answer.style.gridTemplateRows = '';
+              busy = false;
+            });
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
